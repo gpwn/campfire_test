@@ -124,8 +124,7 @@ class UsersController {
       } else {
         profileImg = req.body.profileImg;
       }
-      console.log(profileImg);
-      console.log(typeof profileImg);
+
       await this.usersService.updateUser(userId, userName, profileImg);
       return res.status(201).json({ message: "사용자 정보가 수정되었습니다." });
     } catch (error) {
