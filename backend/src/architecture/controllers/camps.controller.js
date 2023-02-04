@@ -90,17 +90,21 @@ class CampsController {
             }
 
             let campSubImagesArray = [];
-            const subImages = req.body.campSubImages.split(',');
+            const subImages = req.body.campSubImages;
             console.log(subImages);
+            let a = subImages.split(',');
+            console.log(a);
             if (req.files.campSubImages) {
                 for (const img of req.files.campSubImages) {
                     campSubImagesArray.push(img.location);
                 }
-                for (let img of subImages) {
-                    campSubImagesArray.push(img);
+                if (a !== null) {
+                    for (let img of a) {
+                        campSubImagesArray.push(img);
+                    }
                 }
             } else {
-                for (let img of subImages) {
+                for (let img of s) {
                     campSubImagesArray.push(img);
                 }
             }
