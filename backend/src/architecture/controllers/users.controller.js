@@ -117,19 +117,15 @@ class UsersController {
     try {
       const userId = res.locals.userId;
       let { userName } = req.body;
-      console.log(req.file);
-      console.log(req.body);
+
       let profileImg = undefined;
       if (req.file) {
         profileImg = req.file.location;
-      } else if (req.body.profileImg === "null") {
-        profileImg = undefined;
+      } else {
+        profileImg = req.body.profileImg;
       }
-
-      if (userName === "null") {
-        userName = null;
-      } else userName = userName;
-
+      console.log(profileImg);
+      console.log(typeof profileImg);
       await this.usersService.updateUser(userId, userName, profileImg);
       return res.status(201).json({ message: "사용자 정보가 수정되었습니다." });
     } catch (error) {
