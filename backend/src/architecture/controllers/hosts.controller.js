@@ -153,7 +153,7 @@ class HostsController {
 
     updateHost = async (req, res) => {
         try {
-            const { hostId } = res.locals.hostId;
+            const { hostId } = res.locals;
             const { hostName, phoneNumber } = req.body;
 
             let profileImg = undefined;
