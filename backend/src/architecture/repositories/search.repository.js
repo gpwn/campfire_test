@@ -4,6 +4,7 @@ const {
     getCampAmenitiesIncludecondition,
     getEnvsIncludecondition,
     getThemesIncludecondition,
+    getLocationIncludecondition,
 } = require('../../modules/searchCamps.js');
 
 class SearchRepository {
@@ -57,17 +58,18 @@ class SearchRepository {
         });
     };
 
-    getSearchCampLists = async (search, types, themes, envs, amenities) => {
+    getSearchCampLists = async (
+        search,
+        types,
+        themes,
+        envs,
+        amenities,
+        location
+    ) => {
         return await this.#CampsModel.findAll({
             where: {
-                [Op.or]: [
-                    {
-                        campName: { [Op.like]: '%' + search + '%' },
-                    },
-                    {
-                        campAddress: { [Op.like]: '%' + search + '%' },
-                    },
-                ],
+                campName: { [Op.like]: '%' + search + '%' },
+                campAddress: getLocationIncludecondition(location),
             },
             include: [
                 {

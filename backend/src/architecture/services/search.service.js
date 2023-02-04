@@ -38,7 +38,8 @@ class SearchService {
         types,
         themes,
         envs,
-        amenities
+        amenities,
+        location
     ) => {
         if (
             types.length > 3 ||
@@ -56,7 +57,8 @@ class SearchService {
             types,
             themes,
             envs,
-            amenities
+            amenities,
+            location
         );
 
         return await Promise.all(

@@ -25,6 +25,7 @@ class SearchController {
             let themes = searchInfo.themes;
             let envs = searchInfo.envs;
             let amenities = searchInfo.amenities;
+            const location = searchInfo.location;
 
             if (!searchInfo) {
                 throw new InvalidParamsError();
@@ -60,7 +61,8 @@ class SearchController {
                 types,
                 themes,
                 envs,
-                amenities
+                amenities,
+                location
             );
 
             res.status(201).json({
