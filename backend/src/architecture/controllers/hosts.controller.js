@@ -135,7 +135,7 @@ class HostsController {
 
     findOneHost = async (req, res) => {
         try {
-            const { hostId } = req.params;
+            const { hostId } = res.locals;
             const host = await this.hostsService.findOneHost(hostId);
             res.status(200).json({ host });
         } catch (error) {
@@ -153,25 +153,20 @@ class HostsController {
 
     updateHost = async (req, res) => {
         try {
-            const { hostId } = req.params;
-
-            const tokenHostId = res.locals.hostId;
-            console.log(tokenHostId);
+            const { hostId } = res.locals.hostId;
             const { hostName, phoneNumber } = req.body;
-            let profileImg = undefined;
 
+            let profileImg = undefined;
             if (req.file) {
                 profileImg = req.file.location;
-            } else if (req.body.profileImg === 'null') {
-                profileImg =
-                    'https://cdn-icons-png.flaticon.com/512/149/149071.png';
+            } else {
+                profileImg = req.body.profileImg;
             }
 
             await this.hostsService.updateHost(
                 hostId,
                 hostName,
                 phoneNumber,
-                tokenHostId,
                 profileImg
             );
             return res
@@ -183,11 +178,6 @@ class HostsController {
                 return res
                     .status(404)
                     .json({ errorMessage: '존재하지않는 사용자입니다.' });
-            }
-            if (error.message === '권한이 없습니다.') {
-                return res
-                    .status(401)
-                    .json({ errorMessage: '권한이 없습니다.' });
             }
             res.status(400).json({
                 errorMessage: '사용자 정보 수정에 실패하였습니다.',

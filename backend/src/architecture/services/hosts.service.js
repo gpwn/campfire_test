@@ -78,7 +78,7 @@ class HostsService {
         if (!host) throw '존재하지 않는 사용자입니다.';
 
         const CampList = await this.hostsRepository.findCampsListByHost(hostId);
-        console.log(CampList);
+
         return {
             hostId: host.hostId,
             email: host.email,
@@ -93,16 +93,12 @@ class HostsService {
         };
     };
 
-    updateHost = async (
-        hostId,
-        hostName,
-        phoneNumber,
-        tokenHostId,
-        profileImg
-    ) => {
+    updateHost = async (hostId, hostName, phoneNumber, profileImg) => {
         const host = await this.hostsRepository.findOneHost(hostId);
         if (!host) throw new Error('존재하지않는 사용자입니다.');
-        if (host.hostId !== tokenHostId) throw new Error('권한이 없습니다.');
+
+        if (profileImg === null) profileImg = host.profileImg;
+
         await this.hostsRepository.updateHost(
             hostId,
             hostName,

@@ -10,14 +10,14 @@ router.post('/signup', upload.single('profileImg'), hostsController.signUp);
 router.get('/signup/findDup', hostsController.findDup);
 router.post('/signup/checkCompany', hostsController.checkCompany);
 router.post('/login', authLoginHostMiddleware, hostsController.logIn);
-router.get('/:hostId', hostsController.findOneHost);
+router.get('/', authHostMiddleware, hostsController.findOneHost);
 router.put(
-    '/:hostId',
+    '/',
     authHostMiddleware,
     upload.single('profileImg'),
     hostsController.updateHost
 );
-router.delete('/:hostId', authHostMiddleware, hostsController.deleteHost);
+router.delete('/', authHostMiddleware, hostsController.deleteHost);
 // 문자 인증
 router.get('/sms/:phoneNumber', hostsController.sendMessage);
 router.post('/sms/verify', hostsController.verifyCode);
