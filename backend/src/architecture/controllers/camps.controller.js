@@ -98,13 +98,13 @@ class CampsController {
                 for (const img of req.files.campSubImages) {
                     campSubImagesArray.push(img.location);
                 }
-                if (a !== null) {
+                if (subImages !== null) {
                     for (let img of a) {
                         campSubImagesArray.push(img);
                     }
                 }
             } else {
-                for (let img of s) {
+                for (let img of a) {
                     campSubImagesArray.push(img);
                 }
             }
