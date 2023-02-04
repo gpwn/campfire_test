@@ -92,18 +92,18 @@ class CampsController {
             let campSubImagesArray = [];
             const subImages = req.body.campSubImages;
             console.log(subImages);
-            let a = subImages.split(',');
-            console.log(a);
             if (req.files.campSubImages) {
                 for (const img of req.files.campSubImages) {
                     campSubImagesArray.push(img.location);
                 }
-                if (subImages !== null) {
+                if (subImages !== undefined) {
+                    let a = subImages.split(',');
                     for (let img of a) {
                         campSubImagesArray.push(img);
                     }
                 }
             } else {
+                let a = subImages.split(',');
                 for (let img of a) {
                     campSubImagesArray.push(img);
                 }
