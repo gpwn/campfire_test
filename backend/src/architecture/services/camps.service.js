@@ -104,7 +104,7 @@ class CampsService {
             throw new ValidationError('캠핑장 수정 권한이 없습니다.', 400);
         }
 
-        if (campMainImage === null) {
+        if (campMainImage === undefined) {
             campMainImage = findHostId.campMainImage;
         } else {
             const campMainImageName = getMainImageName(

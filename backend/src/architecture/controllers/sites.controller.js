@@ -80,19 +80,6 @@ class SitesController {
                 roomCount,
             } = req.body;
 
-            // let siteMainImage;
-            // const siteSubImagesArray = [];
-
-            // if (req.files) {
-            //     siteMainImage = req.files.siteMainImage[0].location;
-            //     for (const img of req.files.siteSubImages) {
-            //         siteSubImagesArray.push(img.location);
-            //     }
-            // } else {
-            //     throw new InvalidParamsError();
-            // }
-            // const siteSubImages = siteSubImagesArray.toString();
-
             let siteMainImage;
             if (req.files.siteMainImage) {
                 siteMainImage = req.files.siteMainImage[0].location;
@@ -120,9 +107,6 @@ class SitesController {
             }
 
             const siteSubImages = siteSubImagesArray.toString();
-            console.log('test111');
-            console.log(siteMainImage);
-            console.log('test222');
 
             await this.sitesService.updateSite(
                 hostId,

@@ -108,9 +108,6 @@ class CampsController {
             }
 
             const campSubImages = campSubImagesArray.toString();
-            console.log('test111');
-            console.log(campMainImage);
-            console.log('test222');
             await this.campsService.updateCamps(
                 campId,
                 hostId,
