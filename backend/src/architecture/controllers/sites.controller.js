@@ -121,7 +121,7 @@ class SitesController {
 
             const siteSubImages = siteSubImagesArray.toString();
             console.log('test111');
-            console.log(campMainImage);
+            console.log(siteMainImage);
             console.log('test222');
 
             await this.sitesService.updateSite(
