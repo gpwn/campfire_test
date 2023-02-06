@@ -112,7 +112,11 @@ class CampsService {
             );
             await deleteImage(campMainImageName);
         }
-
+        console.log('campSubImages', campSubImages);
+        console.log(
+            'findHostId.campSubImageNames',
+            findHostId.campSubImageNames
+        );
         if (campSubImages !== findHostId.campSubImageNames) {
             const campSubImageNames = getSubImagesNames(
                 findHostId['campSubImages']
