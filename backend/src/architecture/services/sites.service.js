@@ -126,7 +126,7 @@ class SitesService {
             );
         }
 
-        if (siteMainImage === null) {
+        if (siteMainImage === undefined) {
             siteMainImage = findSite.siteMainImage;
         } else {
             const siteMainImageName = getMainImageName(

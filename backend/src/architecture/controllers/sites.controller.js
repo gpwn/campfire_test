@@ -102,7 +102,6 @@ class SitesController {
 
             let siteSubImagesArray = [];
             const subImages = req.body.siteSubImages;
-            console.log('subImages', subImages);
             if (req.files.siteSubImages) {
                 for (const img of req.files.siteSubImages) {
                     siteSubImagesArray.push(img.location);
@@ -119,9 +118,11 @@ class SitesController {
                     siteSubImagesArray.push(img);
                 }
             }
-            console.log('siteSubImagesArray', siteSubImagesArray);
+
             const siteSubImages = siteSubImagesArray.toString();
             console.log('test111');
+            console.log(campMainImage);
+            console.log('test222');
 
             await this.sitesService.updateSite(
                 hostId,
