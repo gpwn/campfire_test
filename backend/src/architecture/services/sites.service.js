@@ -126,12 +126,23 @@ class SitesService {
             );
         }
 
-        const siteMainImageName = getMainImageName(findSite['siteMainImage']);
-        const siteSubImageNames = getSubImagesNames(findSite['siteSubImages']);
+        if (siteMainImage === null) {
+            siteMainImage = findSite.siteMainImage;
+        } else {
+            const siteMainImageName = getMainImageName(
+                findSite['siteMainImage']
+            );
+            await deleteImage(siteMainImageName);
+        }
 
-        await deleteImage(siteMainImageName);
-        for (let siteSubImageName of siteSubImageNames) {
-            await deleteImage(siteSubImageName);
+        if (siteSubImages !== findSite.siteSubImages) {
+            const siteSubImageNames = getSubImagesNames(
+                findSite['siteSubImages']
+            );
+
+            for (let siteSubImageName of siteSubImageNames) {
+                await deleteImage(siteSubImageName);
+            }
         }
 
         return await this.sitesRepository.updateSite(
