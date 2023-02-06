@@ -67,8 +67,6 @@ class CampsController {
     // 캠핑장 수정
     updateCamps = async (req, res, next) => {
         try {
-            console.log('req.files', req.files);
-            console.log('req.body', req.body);
             const {
                 campName,
                 campAddress,
@@ -91,7 +89,7 @@ class CampsController {
 
             let campSubImagesArray = [];
             const subImages = req.body.campSubImages;
-            console.log('subImages', subImages);
+
             if (req.files.campSubImages) {
                 for (const img of req.files.campSubImages) {
                     campSubImagesArray.push(img.location);
@@ -108,9 +106,11 @@ class CampsController {
                     campSubImagesArray.push(img);
                 }
             }
-            console.log('campSubImagesArray', campSubImagesArray);
+
             const campSubImages = campSubImagesArray.toString();
             console.log('test111');
+            console.log(campMainImage);
+            console.log('test222');
             await this.campsService.updateCamps(
                 campId,
                 hostId,
