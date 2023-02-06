@@ -103,7 +103,11 @@ class CampsService {
         if (findHostId.hostId !== hostId) {
             throw new ValidationError('캠핑장 수정 권한이 없습니다.', 400);
         }
-
+        console.log('campSubImages', campSubImages);
+        console.log(
+            'findHostId.campSubImageNames',
+            findHostId.campSubImageNames
+        );
         if (campMainImage === undefined) {
             campMainImage = findHostId.campMainImage;
         } else {
@@ -112,16 +116,10 @@ class CampsService {
             );
             await deleteImage(campMainImageName);
         }
-        console.log('campSubImages', campSubImages);
-        console.log(
-            'findHostId.campSubImageNames',
-            findHostId.campSubImageNames
-        );
-        if (campSubImages !== findHostId.campSubImageNames) {
+        if (campSubImages !== findHostId.campSubImages) {
             const campSubImageNames = getSubImagesNames(
                 findHostId['campSubImages']
             );
-
             for (let campSubImageName of campSubImageNames) {
                 await deleteImage(campSubImageName);
             }
